@@ -1,0 +1,17 @@
+package funaverage57.customweapons.items;
+
+import java.util.Set;
+
+import com.google.common.collect.Sets;
+
+import net.minecraft.block.Block;
+import net.minecraft.item.IItemTier;
+import net.minecraft.item.ToolItem;
+
+public class ItemRapier extends ToolItem{
+	private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet();
+	public ItemRapier(float attackDamageIn, float attackSpeedIn, IItemTier tier, Properties builder) {
+		super(attackDamageIn, attackSpeedIn, tier, EFFECTIVE_ON, builder);
+	}
+	
+}
