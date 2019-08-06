@@ -1,0 +1,389 @@
+package funaverage57.customweapons;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import funaverage57.customweapons.items.ItemCustomAxe;
+import funaverage57.customweapons.items.ItemCustomBow;
+import funaverage57.customweapons.items.ItemCustomPickaxe;
+import funaverage57.customweapons.items.ItemDagger;
+import funaverage57.customweapons.items.ItemHammer;
+import funaverage57.customweapons.items.ItemKatana;
+import funaverage57.customweapons.items.ItemMace;
+import funaverage57.customweapons.items.ItemRapier;
+import funaverage57.customweapons.items.ItemScythe;
+import funaverage57.customweapons.items.ItemTwoSword;
+import funaverage57.customweapons.lists.ArmorMaterialList;
+import funaverage57.customweapons.lists.BlockList;
+import funaverage57.customweapons.lists.ItemList;
+import funaverage57.customweapons.lists.ToolMaterialList;
+import funaverage57.customweapons.world.OreGeneration;
+import net.minecraft.block.Block;
+import funaverage57.customweapons.blocks.BlockCustomOre;
+import funaverage57.customweapons.events.EventHandler;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.HoeItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemTier;
+import net.minecraft.item.ShovelItem;
+import net.minecraft.item.SwordItem;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+@Mod("cw")
+public class Main{
+	
+	public static Main instance;
+	public static final String modid = "cw";
+	private static final Logger logger = LogManager.getLogger(modid);
+	
+	public Main(){
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientRegistries);
+		
+		MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(new EventHandler());
+	}
+	private void setup(final FMLCommonSetupEvent event){
+		OreGeneration.setupOreGeneration();
+		logger.info("Setup method registered.");
+	}
+	private void clientRegistries(final FMLClientSetupEvent event){
+		logger.info("Client Registries method registered.");
+	}
+	@Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
+	public static class RegistryEvents{
+		@SubscribeEvent
+		public static void registerItems(final RegistryEvent.Register<Item> event){
+			
+			logger.info("Items registered.");
+			event.getRegistry().registerAll(
+					ItemList.wooden_dagger = new ItemDagger(1.0F, -2.4F, ItemTier.WOOD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("wooden_dagger")),
+					ItemList.wooden_hammer = new ItemHammer(5.0F, -3.0F, ItemTier.WOOD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("wooden_hammer")),
+					ItemList.wooden_katana = new ItemKatana(4.0F, -2.8F, ItemTier.WOOD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("wooden_katana")),
+					ItemList.wooden_mace = new ItemMace(5.0F, -3.0F, ItemTier.WOOD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("wooden_mace")),
+					ItemList.wooden_rapier = new ItemRapier(2.0F, -2.0F, ItemTier.WOOD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("wooden_rapier")),
+					ItemList.wooden_scythe = new ItemScythe(6.0F, -2.2F, ItemTier.WOOD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("wooden_scythe")),
+					ItemList.wooden_two_sword = new ItemTwoSword(7.0F, -3.1F, ItemTier.WOOD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("wooden_two_sword")),
+					
+					ItemList.stone_dagger = new ItemDagger(0.5F, -2.4F, ItemTier.STONE, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("stone_dagger")),
+					ItemList.stone_hammer = new ItemHammer(5.0F, -3.0F, ItemTier.STONE, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("stone_hammer")),
+					ItemList.stone_katana = new ItemKatana(4.0F, -2.8F, ItemTier.STONE, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("stone_katana")),
+					ItemList.stone_mace = new ItemMace(5.0F, -3.0F, ItemTier.STONE, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("stone_mace")),
+					ItemList.stone_rapier = new ItemRapier(2.0F, -2.0F, ItemTier.STONE, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("stone_rapier")),
+					ItemList.stone_scythe = new ItemScythe(4.0F, -2.2F, ItemTier.STONE, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("stone_scythe")),
+					ItemList.stone_two_sword = new ItemTwoSword(8.0F, -3.1F, ItemTier.STONE, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("stone_two_sword")),
+							
+					ItemList.iron_dagger = new ItemDagger(0.0F, -2.4F, ItemTier.IRON, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("iron_dagger")),
+					ItemList.iron_hammer = new ItemHammer(5.0F, -3.0F, ItemTier.IRON, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("iron_hammer")),
+					ItemList.iron_katana = new ItemKatana(4.0F, -2.8F, ItemTier.IRON, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("iron_katana")),
+					ItemList.iron_mace = new ItemMace(5.0F, -3.0F, ItemTier.IRON, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("iron_mace")),
+					ItemList.iron_rapier = new ItemRapier(2.0F, -2.0F, ItemTier.IRON, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("iron_rapier")),
+					ItemList.iron_scythe = new ItemScythe(6.0F, -2.2F, ItemTier.IRON, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("iron_scythe")),
+					ItemList.iron_two_sword = new ItemTwoSword(9.0F, -3.1F, ItemTier.IRON, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("iron_two_sword")),
+							
+					ItemList.black_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("black_iron_ingot")),
+					ItemList.blue_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("blue_iron_ingot")),
+					ItemList.brown_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("brown_iron_ingot")),
+					ItemList.cyan_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("cyan_iron_ingot")),
+					ItemList.gray_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("gray_iron_ingot")),
+					ItemList.green_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("green_iron_ingot")),
+					ItemList.lightblue_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("lightblue_iron_ingot")),
+					ItemList.lightgray_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("lightgray_iron_ingot")),
+					ItemList.lime_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("lime_iron_ingot")),
+					ItemList.magenta_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("magenta_iron_ingot")),
+					ItemList.orange_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("orange_iron_ingot")),
+					ItemList.pink_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("pink_iron_ingot")),
+					ItemList.purple_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("purple_iron_ingot")),
+					ItemList.red_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("red_iron_ingot")),
+					ItemList.white_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("white_iron_ingot")),
+					ItemList.yellow_iron_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("yellow_iron_ingot")),
+					
+					ItemList.iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("iron_rod")),
+					ItemList.black_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("black_iron_rod")),
+					ItemList.blue_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("blue_iron_rod")),
+					ItemList.brown_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("brown_iron_rod")),
+					ItemList.cyan_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("cyan_iron_rod")),
+					ItemList.gray_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("gray_iron_rod")),
+					ItemList.green_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("green_iron_rod")),
+					ItemList.lightblue_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("lightblue_iron_rod")),
+					ItemList.lightgray_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("lightgray_iron_rod")),
+					ItemList.lime_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("lime_iron_rod")),
+					ItemList.magenta_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("magenta_iron_rod")),
+					ItemList.orange_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("orange_iron_rod")),
+					ItemList.pink_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("pink_iron_rod")),
+					ItemList.purple_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("purple_iron_rod")),
+					ItemList.red_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("red_iron_rod")),
+					ItemList.white_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("white_iron_rod")),
+					ItemList.yellow_iron_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("yellow_iron_rod")),
+					
+					ItemList.steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("steel_ingot")),
+					ItemList.steel_nugget = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("steel_nugget")),
+					
+					ItemList.steel_axe = new ItemCustomAxe(ToolMaterialList.steel, 3F, -3F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("steel_axe")),
+					ItemList.steel_hoe = new HoeItem(ToolMaterialList.steel, -1F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("steel_hoe")),
+					ItemList.steel_pickaxe = new ItemCustomPickaxe(ToolMaterialList.steel, -2, -2.8F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("steel_pickaxe")),
+					ItemList.steel_shovel = new ShovelItem(ToolMaterialList.steel, -1.5F, -3.0F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("steel_shovel")),
+					ItemList.steel_sword = new SwordItem(ToolMaterialList.steel, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("steel_sword")),
+					ItemList.steel_dagger = new ItemDagger(-3.0F, -2.4F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("steel_dagger")),
+					ItemList.steel_hammer = new ItemHammer(2.0F, -3.0F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("steel_hammer")),
+					ItemList.steel_katana = new ItemKatana(1.0F, -2.8F,ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("steel_katana")),
+					ItemList.steel_mace = new ItemMace(2.0F, -3.0F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("steel_mace")),
+					ItemList.steel_rapier = new ItemRapier(-1.0F, -2.0F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("steel_rapier")),
+					ItemList.steel_scythe = new ItemScythe(3.0F, -2.2F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("steel_scythe")),
+					ItemList.steel_two_sword = new ItemTwoSword(6.0F, -3.1F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("steel_two_sword")),
+					
+					ItemList.black_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("black_steel_ingot")),
+					ItemList.blue_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("blue_steel_ingot")),
+					ItemList.brown_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("brown_steel_ingot")),
+					ItemList.cyan_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("cyan_steel_ingot")),
+					ItemList.gray_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("gray_steel_ingot")),
+					ItemList.green_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("green_steel_ingot")),
+					ItemList.lightblue_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("lightblue_steel_ingot")),
+					ItemList.lightgray_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("lightgray_steel_ingot")),
+					ItemList.lime_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("lime_steel_ingot")),
+					ItemList.magenta_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("magenta_steel_ingot")),
+					ItemList.orange_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("orange_steel_ingot")),
+					ItemList.pink_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("pink_steel_ingot")),
+					ItemList.purple_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("purple_steel_ingot")),
+					ItemList.red_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("red_steel_ingot")),
+					ItemList.white_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("white_steel_ingot")),
+					ItemList.yellow_steel_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("yellow_steel_ingot")),
+					
+					ItemList.gold_dagger = new ItemDagger(1.0F, -2.4F, ItemTier.GOLD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("gold_dagger")),
+					ItemList.gold_hammer = new ItemHammer(5.0F, -3.0F, ItemTier.GOLD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("gold_hammer")),
+					ItemList.gold_katana = new ItemKatana(4.0F, -2.8F, ItemTier.GOLD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("gold_katana")),
+					ItemList.gold_mace = new ItemMace(5.0F, -3.0F, ItemTier.GOLD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("gold_mace")),
+					ItemList.gold_rapier = new ItemRapier(2.0F, -2.0F, ItemTier.GOLD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("gold_rapier")),
+					ItemList.gold_scythe = new ItemScythe(6.0F, -2.2F, ItemTier.GOLD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("gold_scythe")),
+					ItemList.gold_two_sword = new ItemTwoSword(7.0F, -3.1F, ItemTier.GOLD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("gold_two_sword")),
+							
+					ItemList.diamond_dagger = new ItemDagger(0.5F, -2.4F, ItemTier.DIAMOND, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("diamond_dagger")),
+					ItemList.diamond_hammer = new ItemHammer(5.0F, -3.0F, ItemTier.DIAMOND, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("diamond_hammer")),
+					ItemList.diamond_katana = new ItemKatana(4.0F, -2.8F, ItemTier.DIAMOND, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("diamond_katana")),
+					ItemList.diamond_mace = new ItemMace(5.0F, -3.0F, ItemTier.DIAMOND, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("diamond_mace")),
+					ItemList.diamond_rapier = new ItemRapier(2.0F, -2.0F, ItemTier.DIAMOND, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("diamond_rapier")),
+					ItemList.diamond_scythe = new ItemScythe(5.0F, -2.2F, ItemTier.DIAMOND, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("diamond_scythe")),
+					ItemList.diamond_two_sword = new ItemTwoSword(10.0F, -3.1F, ItemTier.DIAMOND, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("diamond_two_sword")),
+									
+					ItemList.black_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("black_diamond")),
+					ItemList.blue_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("blue_diamond")),
+					ItemList.brown_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("brown_diamond")),
+					ItemList.cyan_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("cyan_diamond")),
+					ItemList.gray_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("gray_diamond")),
+					ItemList.green_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("green_diamond")),
+					ItemList.lightblue_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("lightblue_diamond")),
+					ItemList.lightgray_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("lightgray_diamond")),
+					ItemList.lime_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("lime_diamond")),
+					ItemList.magenta_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("magenta_diamond")),
+					ItemList.orange_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("orange_diamond")),
+					ItemList.pink_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("pink_diamond")),
+					ItemList.purple_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("purple_diamond")),
+					ItemList.red_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("red_diamond")),
+					ItemList.white_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("white_diamond")),
+					ItemList.yellow_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("yellow_diamond")),
+					ItemList.cactus_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("cactus_diamond")),
+					ItemList.rainbow_diamond = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("rainbow_diamond")),
+					
+					ItemList.emerald_axe = new ItemCustomAxe(ToolMaterialList.emerald, 2.75F, -3.1F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("emerald_axe")),
+					ItemList.emerald_hoe = new HoeItem(ToolMaterialList.emerald, -0.75F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("emerald_hoe")),
+					ItemList.emerald_pickaxe = new ItemCustomPickaxe(ToolMaterialList.emerald, -2, -2.8F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("emerald_pickaxe")),
+					ItemList.emerald_shovel = new ShovelItem(ToolMaterialList.emerald, -1.5F, -3.0F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("emerald_shovel")),
+					ItemList.emerald_sword = new SwordItem(ToolMaterialList.emerald, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("emerald_sword")),
+					ItemList.emerald_dagger = new ItemDagger(-3.25F, -2.4F, ToolMaterialList.emerald, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("emerald_dagger")),
+					ItemList.emerald_hammer = new ItemHammer(2.0F, -3.0F, ToolMaterialList.emerald, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("emerald_hammer")),
+					ItemList.emerald_katana = new ItemKatana(1.0F, -2.8F,ToolMaterialList.emerald, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("emerald_katana")),
+					ItemList.emerald_mace = new ItemMace(2.0F, -3.0F, ToolMaterialList.emerald, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("emerald_mace")),
+					ItemList.emerald_rapier = new ItemRapier(-1.0F, -2.0F, ToolMaterialList.emerald, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("emerald_rapier")),
+					ItemList.emerald_scythe = new ItemScythe(2.75F, -2.2F, ToolMaterialList.emerald, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("emerald_scythe")),
+					ItemList.emerald_two_sword = new ItemTwoSword(6.25F, -3.1F, ToolMaterialList.emerald, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("emerald_two_sword")),
+					
+					ItemList.ruby = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("ruby")),
+					
+					ItemList.ruby_axe = new ItemCustomAxe(ToolMaterialList.ruby, 2.25F, -3F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("ruby_axe")),
+					ItemList.ruby_hoe = new HoeItem(ToolMaterialList.ruby, -0.25F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("ruby_hoe")),
+					ItemList.ruby_pickaxe = new ItemCustomPickaxe(ToolMaterialList.ruby, -2, -2.8F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("ruby_pickaxe")),
+					ItemList.ruby_shovel = new ShovelItem(ToolMaterialList.ruby, -1.5F, -3.0F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("ruby_shovel")),
+					ItemList.ruby_sword = new SwordItem(ToolMaterialList.ruby, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ruby_sword")),
+					ItemList.ruby_dagger = new ItemDagger(-3.25F, -2.4F, ToolMaterialList.ruby, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ruby_dagger")),
+					ItemList.ruby_hammer = new ItemHammer(2.0F, -3.0F, ToolMaterialList.ruby, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ruby_hammer")),
+					ItemList.ruby_katana = new ItemKatana(1.0F, -2.8F,ToolMaterialList.ruby, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ruby_katana")),
+					ItemList.ruby_mace = new ItemMace(2.0F, -3.0F, ToolMaterialList.ruby, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ruby_mace")),
+					ItemList.ruby_rapier = new ItemRapier(-1.0F, -2.0F, ToolMaterialList.ruby, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ruby_rapier")),
+					ItemList.ruby_scythe = new ItemScythe(2.25F, -2.2F, ToolMaterialList.ruby, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ruby_scythe")),
+					ItemList.ruby_two_sword = new ItemTwoSword(6.75F, -3.1F, ToolMaterialList.ruby, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ruby_two_sword")),
+					
+					ItemList.sapphire = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("sapphire")),
+					
+					ItemList.sapphire_axe = new ItemCustomAxe(ToolMaterialList.sapphire, 2.25F, -3.0F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("sapphire_axe")),
+					ItemList.sapphire_hoe = new HoeItem(ToolMaterialList.sapphire, -0.25F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("sapphire_hoe")),
+					ItemList.sapphire_pickaxe = new ItemCustomPickaxe(ToolMaterialList.sapphire, -2, -2.8F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("sapphire_pickaxe")),
+					ItemList.sapphire_shovel = new ShovelItem(ToolMaterialList.sapphire, -1.5F, -3.0F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("sapphire_shovel")),
+					ItemList.sapphire_sword = new SwordItem(ToolMaterialList.sapphire, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("sapphire_sword")),
+					ItemList.sapphire_dagger = new ItemDagger(-3.25F, -2.4F, ToolMaterialList.sapphire, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("sapphire_dagger")),
+					ItemList.sapphire_hammer = new ItemHammer(2.0F, -3.0F, ToolMaterialList.sapphire, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("sapphire_hammer")),
+					ItemList.sapphire_katana = new ItemKatana(1.0F, -2.8F,ToolMaterialList.sapphire, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("sapphire_katana")),
+					ItemList.sapphire_mace = new ItemMace(2.0F, -3.0F, ToolMaterialList.sapphire, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("sapphire_mace")),
+					ItemList.sapphire_rapier = new ItemRapier(-1.0F, -2.0F, ToolMaterialList.sapphire, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("sapphire_rapier")),
+					ItemList.sapphire_scythe = new ItemScythe(2.25F, -2.2F, ToolMaterialList.sapphire, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("sapphire_scythe")),
+					ItemList.sapphire_two_sword = new ItemTwoSword(6.75F, -3.1F, ToolMaterialList.sapphire, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("sapphire_two_sword")),
+							
+					ItemList.kyber_blue = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("kyber_blue")),
+					ItemList.kyber_green = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("kyber_green")),
+					ItemList.kyber_purple = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("kyber_purple")),
+					ItemList.kyber_red = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("kyber_red")),
+					
+					ItemList.crystallite_ingot = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("crystallite_ingot")),
+					ItemList.crystallite_rod = new Item(new Item.Properties().group(ItemGroup.MATERIALS)).setRegistryName(location("crystallite_rod")),
+					
+					ItemList.broken_blue_rose_sword = new Item(new Item.Properties().maxStackSize(1).group(ItemGroup.MATERIALS)).setRegistryName(location("broken_blue_rose_sword")),
+					
+					ItemList.emerald_helmet = new ArmorItem(ArmorMaterialList.emerald, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("emerald_helmet")),
+					ItemList.emerald_chestplate = new ArmorItem(ArmorMaterialList.emerald, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("emerald_chestplate")),
+					ItemList.emerald_leggings = new ArmorItem(ArmorMaterialList.emerald, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("emerald_leggings")),
+					ItemList.emerald_boots = new ArmorItem(ArmorMaterialList.emerald, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("emerald_boots")),
+					ItemList.ruby_helmet = new ArmorItem(ArmorMaterialList.ruby, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ruby_helmet")),
+					ItemList.ruby_chestplate = new ArmorItem(ArmorMaterialList.ruby, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ruby_chestplate")),
+					ItemList.ruby_leggings = new ArmorItem(ArmorMaterialList.ruby, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ruby_leggings")),
+					ItemList.ruby_boots = new ArmorItem(ArmorMaterialList.ruby, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ruby_boots")),
+					ItemList.sapphire_helmet = new ArmorItem(ArmorMaterialList.ruby, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("sapphire_helmet")),
+					ItemList.sapphire_chestplate = new ArmorItem(ArmorMaterialList.sapphire, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("sapphire_chestplate")),
+					ItemList.sapphire_leggings = new ArmorItem(ArmorMaterialList.sapphire, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("sapphire_leggings")),
+					ItemList.sapphire_boots = new ArmorItem(ArmorMaterialList.sapphire, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("sapphire_boots")),
+					ItemList.steel_helmet = new ArmorItem(ArmorMaterialList.steel, EquipmentSlotType.HEAD, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("steel_helmet")),
+					ItemList.steel_chestplate = new ArmorItem(ArmorMaterialList.steel, EquipmentSlotType.CHEST, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("steel_chestplate")),
+					ItemList.steel_leggings = new ArmorItem(ArmorMaterialList.steel, EquipmentSlotType.LEGS, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("steel_leggings")),
+					ItemList.steel_boots = new ArmorItem(ArmorMaterialList.steel, EquipmentSlotType.FEET, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("steel_boots")),
+											
+					ItemList.el_chopo = new ItemCustomAxe(ItemTier.IRON, 6.0F, -3.0F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("el_chopo")),
+					ItemList.elderly_axe = new ItemCustomAxe(ItemTier.DIAMOND, 5.0F, -3.0F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("elderly_axe")),
+					ItemList.nadr = new ItemCustomAxe(ToolMaterialList.steel, 3.0F, -3.0F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("nadr")),
+					ItemList.parashu = new ItemCustomAxe(ToolMaterialList.legendary, 2.0F, -3.0F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("parashu")),
+					ItemList.training_axe = new ItemCustomAxe(ToolMaterialList.training, 0.0F, -3.0F, new Item.Properties().group(ItemGroup.TOOLS)).setRegistryName(location("training_axe")),
+					
+					ItemList.green_longbow = new ItemCustomBow(542, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("green_longbow")),
+					ItemList.ichaival = new ItemCustomBow(1870, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ichaival")),
+					ItemList.larc_qul_ne_faut = new ItemCustomBow(542, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("larc_qul_ne_faut")),
+					ItemList.thunderstorm = new ItemCustomBow(542, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("thunderstorm")),
+					ItemList.training_bow = new ItemCustomBow(542, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("training_bow")),
+					ItemList.vampire_shot = new ItemCustomBow(542, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("vampire_shot")),
+					
+					ItemList.carnwennan = new ItemDagger(1.0F, -2.4F, ToolMaterialList.legendary, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("carnwennan")),
+					ItemList.clear_strike = new ItemDagger(0.0F, -2.4F, ItemTier.IRON, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("clear_strike")),
+					ItemList.giardino = new ItemDagger(-3.0F, -2.4F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("giardino")),
+					ItemList.strike_of_god = new ItemDagger(0.0F, -2.4F, ItemTier.IRON, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("strike_of_god")),
+					ItemList.sword_breaker = new ItemDagger(-3.0F, -2.4F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("sword_breaker")),
+					ItemList.training_dagger = new ItemDagger(0.0F, -2.4F, ToolMaterialList.training, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("training_dagger")),
+					
+					ItemList.mjolnir = new ItemHammer(2.0F, -3.0F, ToolMaterialList.legendary, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("mjolnir")),
+					ItemList.rainbow_smasher = new ItemHammer(5.0F, -3.0F, ItemTier.DIAMOND, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("rainbow_smasher")),
+					ItemList.training_hammer = new ItemHammer(0.0F, -3.0F, ToolMaterialList.training, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("training_hammer")),
+					
+					ItemList.ame_no_murakumo = new ItemKatana(1.0F, -2.8F,ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ame_no_murakumo")),
+					ItemList.masamune = new ItemKatana(1.0F, -2.8F,ToolMaterialList.legendary, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("masamune")),
+					ItemList.training_katana = new ItemKatana(0.0F, -2.8F,ToolMaterialList.training, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("training_katana")),
+					ItemList.usumidori = new ItemKatana(1.0F, -2.8F,ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("usumidori")),
+					
+					ItemList.gridarvol = new ItemMace(2.0F, -3.0F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("gridarvol")),
+					ItemList.training_mace = new ItemMace(0.0F, -3.0F, ToolMaterialList.training, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("training_mace")),
+					
+					ItemList.blood_rose_sword = new SwordItem(ToolMaterialList.blood_steel, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("blood_rose_sword")),
+					ItemList.blue_long_sword = new SwordItem(ItemTier.IRON, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("blue_long_sword")),
+					ItemList.blue_rose_sword = new SwordItem(ToolMaterialList.steel, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("blue_rose_sword")),
+					ItemList.brianator = new SwordItem(ToolMaterialList.ruby, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("brianator")),
+					ItemList.cactus_blade = new SwordItem(ItemTier.DIAMOND, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("cactus_blade")),
+					ItemList.calibur = new SwordItem(ToolMaterialList.fakelegendary, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("calibur")),
+					ItemList.conscience = new SwordItem(ItemTier.IRON, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("conscience")),
+					ItemList.dark_repulser = new SwordItem(ToolMaterialList.crystallite, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("dark_repulser")),
+					ItemList.dark_rosario = new SwordItem(ItemTier.IRON, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("dark_rosario")),
+					ItemList.dark_shadow = new SwordItem(ItemTier.DIAMOND, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("dark_shadow")),
+					ItemList.death_blade = new SwordItem(ItemTier.DIAMOND, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("death_blade")),
+					ItemList.death_ice = new SwordItem(ItemTier.IRON, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("death_ice")),
+					ItemList.divination = new SwordItem(ToolMaterialList.steel, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("divination")),
+					ItemList.durandal = new SwordItem(ToolMaterialList.steel, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("durandal")),
+					ItemList.elucidator = new SwordItem(ItemTier.DIAMOND, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("elucidator")),
+					ItemList.emerald_easer = new SwordItem(ToolMaterialList.emerald, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("emerald_easer")),
+					ItemList.ender_blade = new SwordItem(ItemTier.IRON, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ender_blade")),
+					ItemList.excalibur = new SwordItem(ToolMaterialList.legendary, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("excalibur")),
+					ItemList.green_long_sword = new SwordItem(ItemTier.IRON, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("green_long_sword")),
+					ItemList.hauteclere = new SwordItem(ToolMaterialList.steel, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("hauteclere")),
+					ItemList.hrunting = new SwordItem(ItemTier.IRON, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("hrunting")),
+					ItemList.joyeuse = new SwordItem(ItemTier.IRON, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("joyeuse")),
+					ItemList.macuahuiti = new SwordItem(ItemTier.DIAMOND, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("macuahuiti")),
+					ItemList.master_sword = new SwordItem(ItemTier.DIAMOND, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("master_sword")),
+					ItemList.night_sky_sword = new SwordItem(ToolMaterialList.steel, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("night_sky_sword")),
+					ItemList.orange_long_sword = new SwordItem(ItemTier.IRON, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("orange_long_sword")),
+					ItemList.phantom_blade = new SwordItem(ToolMaterialList.steel, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("phantom_blade")),
+					ItemList.purple_long_sword = new SwordItem(ItemTier.IRON, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("purple_long_sword")),
+					ItemList.rainbow_blade = new SwordItem(ItemTier.DIAMOND, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("rainbow_blade")),
+					ItemList.red_long_sword = new SwordItem(ItemTier.IRON, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("red_long_sword")),
+					ItemList.ruby_slicer = new SwordItem(ToolMaterialList.ruby, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ruby_slicer")),
+					ItemList.sapphire_slicer = new SwordItem(ToolMaterialList.sapphire, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("sapphire_slicer")),
+					ItemList.sword_of_hogni = new SwordItem(ToolMaterialList.steel, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("sword_of_hogni")),
+					ItemList.training_onehanded = new SwordItem(ToolMaterialList.training, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("training_onehanded")),
+					ItemList.vox_unitas = new SwordItem(ToolMaterialList.steel, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("vox_unitas")),
+					ItemList.weizen = new SwordItem(ToolMaterialList.steel, 0, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("weizen")),
+					ItemList.yellow_long_sword = new SwordItem(ItemTier.IRON, 3, -2.4F, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("yellow_long_sword")),
+					
+					ItemList.excalibru = new ItemRapier(2.0F, -2.0F, ItemTier.IRON, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("excalibru")),
+					ItemList.fire_stinger = new ItemRapier(2.0F, -2.0F, ItemTier.IRON, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("fire_stinger")),
+					ItemList.ray_of_grace = new ItemRapier(-1.0F, -2.0F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("ray_of_grace")),
+					ItemList.rose_sword = new ItemRapier(2.0F, -2.0F, ItemTier.DIAMOND, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("rose_sword")),
+					ItemList.training_rapier = new ItemRapier(0.0F, -2.0F, ToolMaterialList.training, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("training_rapier")),
+					ItemList.water_stinger = new ItemRapier(2.0F, -2.0F, ItemTier.IRON, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("water_stinger")),
+					
+					ItemList.bikuta = new ItemScythe(3.0F, -2.2F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("bikuta")),
+					ItemList.destroyer = new ItemScythe(3.0F, -2.2F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("destroyer")),
+					ItemList.fate_bringer = new ItemScythe(3.0F, -2.2F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("fate_bringer")),
+					ItemList.grim_scythe = new ItemScythe(2.0F, -2.2F, ToolMaterialList.legendary, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("grim_scythe")),
+					ItemList.training_scythe = new ItemScythe(0.0F, -2.2F, ToolMaterialList.training, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("training_scythe")),
+					
+					ItemList.dargvandil = new ItemTwoSword(6.0F, -3.1F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("dargvandil")),
+					ItemList.dark_slicer = new ItemTwoSword(6.0F, -3.1F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("dark_slicer")),
+					ItemList.fire_smasher = new ItemTwoSword(6.0F, -3.1F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("fire_smasher")),
+					ItemList.monolith = new ItemTwoSword(6.0F, -3.1F, ToolMaterialList.steel, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("monolith")),
+					ItemList.training_twohanded = new ItemTwoSword(0.0F, -3.1F, ToolMaterialList.training, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("training_twohanded")),
+					ItemList.tsukiyomi = new ItemTwoSword(9.0F, -3.1F, ToolMaterialList.legendary, new Item.Properties().group(ItemGroup.COMBAT)).setRegistryName(location("tsukiyomi")),
+					
+					ItemList.crystallite_ore = new BlockItem(BlockList.crystallite_ore, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(BlockList.crystallite_ore.getRegistryName()),
+					ItemList.kyber_blue_ore = new BlockItem(BlockList.kyber_blue_ore, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(BlockList.kyber_blue_ore.getRegistryName()),
+					ItemList.kyber_green_ore = new BlockItem(BlockList.kyber_green_ore, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(BlockList.kyber_green_ore.getRegistryName()),
+					ItemList.kyber_purple_ore = new BlockItem(BlockList.kyber_purple_ore, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(BlockList.kyber_purple_ore.getRegistryName()),
+					ItemList.kyber_red_ore = new BlockItem(BlockList.kyber_red_ore, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(BlockList.kyber_red_ore.getRegistryName()),
+					ItemList.ruby_block = new BlockItem(BlockList.ruby_block, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(BlockList.ruby_block.getRegistryName()),
+					ItemList.ruby_ore = new BlockItem(BlockList.ruby_ore, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(BlockList.ruby_ore.getRegistryName()),
+					ItemList.sapphire_block = new BlockItem(BlockList.sapphire_block, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(BlockList.sapphire_block.getRegistryName()),
+					ItemList.sapphire_ore = new BlockItem(BlockList.sapphire_ore, new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)).setRegistryName(BlockList.sapphire_ore.getRegistryName())
+			);
+		}
+		@SubscribeEvent
+		public static void registerBlocks(final RegistryEvent.Register<Block> event) {
+			event.getRegistry().registerAll(
+					BlockList.crystallite_ore = new BlockCustomOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("crystallite_ore")),
+					BlockList.kyber_blue_ore = new BlockCustomOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("kyber_blue_ore")),
+					BlockList.kyber_green_ore = new BlockCustomOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("kyber_green_ore")),
+					BlockList.kyber_purple_ore = new BlockCustomOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("kyber_purple_ore")),
+					BlockList.kyber_red_ore = new BlockCustomOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("kyber_red_ore")),
+					BlockList.ruby_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(3.0f, 3.0f).lightValue(0).sound(SoundType.METAL)).setRegistryName(location("ruby_block")),
+					BlockList.ruby_ore = new BlockCustomOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("ruby_ore")),
+					BlockList.sapphire_block = new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(3.0f, 3.0f).lightValue(0).sound(SoundType.METAL)).setRegistryName(location("sapphire_block")),
+					BlockList.sapphire_ore = new BlockCustomOre(Block.Properties.create(Material.ROCK).hardnessAndResistance(3.0f, 3.0f).lightValue(0).sound(SoundType.STONE)).setRegistryName(location("sapphire_ore"))
+				);
+			logger.info("Blocks registered.");
+		}
+		private static ResourceLocation location(String name) {
+			return new ResourceLocation(modid, name);
+		}
+	}
+}
