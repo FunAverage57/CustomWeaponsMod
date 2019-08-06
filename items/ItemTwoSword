@@ -1,0 +1,11 @@
+package funaverage57.customweapons.items;
+
+import net.minecraft.item.IItemTier;
+import net.minecraft.item.ToolItem;
+
+public class ItemTwoSword extends ToolItem{
+	public ItemTwoSword(float attackDamageIn, float attackSpeedIn, IItemTier tier, Properties builder) {
+		super(attackDamageIn, attackSpeedIn, tier, null, builder);
+	}
+	
+}
