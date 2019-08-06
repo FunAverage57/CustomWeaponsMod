@@ -1,0 +1,304 @@
+package funaverage57.customweapons.lists;
+
+import net.minecraft.item.Item;
+
+public class ItemList{
+	//Wooden
+	public static Item wooden_dagger;
+	public static Item wooden_hammer;
+	public static Item wooden_katana;
+	public static Item wooden_mace;
+	public static Item wooden_rapier;
+	public static Item wooden_scythe;
+	public static Item wooden_two_sword;
+	//Stone
+	public static Item stone_dagger;
+	public static Item stone_hammer;
+	public static Item stone_katana;
+	public static Item stone_mace;
+	public static Item stone_rapier;
+	public static Item stone_scythe;
+	public static Item stone_two_sword;
+	//Iron
+	public static Item iron_dagger;
+	public static Item iron_hammer;
+	public static Item iron_katana;
+	public static Item iron_mace;
+	public static Item iron_rapier;
+	public static Item iron_scythe;
+	public static Item iron_two_sword;
+	//Color Iron
+	public static Item black_iron_ingot;
+	public static Item blue_iron_ingot;
+	public static Item brown_iron_ingot;
+	public static Item cyan_iron_ingot;
+	public static Item gray_iron_ingot;
+	public static Item green_iron_ingot;
+	public static Item lightblue_iron_ingot;
+	public static Item lightgray_iron_ingot;
+	public static Item lime_iron_ingot;
+	public static Item magenta_iron_ingot;
+	public static Item orange_iron_ingot;
+	public static Item pink_iron_ingot;
+	public static Item purple_iron_ingot;
+	public static Item red_iron_ingot;
+	public static Item white_iron_ingot;
+	public static Item yellow_iron_ingot;
+	//Iron Rods
+	public static Item iron_rod;
+	public static Item black_iron_rod;
+	public static Item blue_iron_rod;
+	public static Item brown_iron_rod;
+	public static Item cyan_iron_rod;
+	public static Item gray_iron_rod;
+	public static Item green_iron_rod;
+	public static Item lightblue_iron_rod;
+	public static Item lightgray_iron_rod;
+	public static Item lime_iron_rod;
+	public static Item magenta_iron_rod;
+	public static Item orange_iron_rod;
+	public static Item pink_iron_rod;
+	public static Item purple_iron_rod;
+	public static Item red_iron_rod;
+	public static Item white_iron_rod;
+	public static Item yellow_iron_rod;
+	//Steel
+	public static Item steel_ingot;
+	public static Item steel_nugget;
+	
+	public static Item steel_axe;
+	public static Item steel_hoe;
+	public static Item steel_pickaxe;
+	public static Item steel_shovel;
+	public static Item steel_sword;
+	public static Item steel_dagger;
+	public static Item steel_hammer;
+	public static Item steel_katana;
+	public static Item steel_mace;
+	public static Item steel_rapier;
+	public static Item steel_scythe;
+	public static Item steel_two_sword;
+	//Color Steel
+	public static Item black_steel_ingot;
+	public static Item blue_steel_ingot;
+	public static Item brown_steel_ingot;
+	public static Item cyan_steel_ingot;
+	public static Item gray_steel_ingot;
+	public static Item green_steel_ingot;
+	public static Item lightblue_steel_ingot;
+	public static Item lightgray_steel_ingot;
+	public static Item lime_steel_ingot;
+	public static Item magenta_steel_ingot;
+	public static Item orange_steel_ingot;
+	public static Item pink_steel_ingot;
+	public static Item purple_steel_ingot;
+	public static Item red_steel_ingot;
+	public static Item white_steel_ingot;
+	public static Item yellow_steel_ingot;
+	//Gold
+	public static Item gold_dagger;
+	public static Item gold_hammer;
+	public static Item gold_katana;
+	public static Item gold_mace;
+	public static Item gold_rapier;
+	public static Item gold_scythe;
+	public static Item gold_two_sword;
+	//Diamond
+	public static Item diamond_dagger;
+	public static Item diamond_hammer;
+	public static Item diamond_katana;
+	public static Item diamond_mace;
+	public static Item diamond_rapier;
+	public static Item diamond_scythe;
+	public static Item diamond_two_sword;
+	//Color Diamond
+	public static Item black_diamond;
+	public static Item blue_diamond;
+	public static Item brown_diamond;
+	public static Item cyan_diamond;
+	public static Item gray_diamond;
+	public static Item green_diamond;
+	public static Item lightblue_diamond;
+	public static Item lightgray_diamond;
+	public static Item lime_diamond;
+	public static Item magenta_diamond;
+	public static Item orange_diamond;
+	public static Item pink_diamond;
+	public static Item purple_diamond;
+	public static Item red_diamond;
+	public static Item white_diamond;
+	public static Item yellow_diamond;
+	public static Item cactus_diamond;
+	public static Item rainbow_diamond;
+	//Emerald
+	public static Item emerald_axe;
+	public static Item emerald_hoe;
+	public static Item emerald_pickaxe;
+	public static Item emerald_shovel;
+	public static Item emerald_sword;
+	public static Item emerald_dagger;
+	public static Item emerald_hammer;
+	public static Item emerald_katana;
+	public static Item emerald_mace;
+	public static Item emerald_rapier;
+	public static Item emerald_scythe;
+	public static Item emerald_two_sword;
+	//Ruby
+	public static Item ruby;
+	
+	public static Item ruby_axe;
+	public static Item ruby_hoe;
+	public static Item ruby_pickaxe;
+	public static Item ruby_shovel;
+	public static Item ruby_sword;
+	public static Item ruby_dagger;
+	public static Item ruby_hammer;
+	public static Item ruby_katana;
+	public static Item ruby_mace;
+	public static Item ruby_rapier;
+	public static Item ruby_scythe;
+	public static Item ruby_two_sword;
+	//Sapphire
+	public static Item sapphire;
+	
+	public static Item sapphire_axe;
+	public static Item sapphire_hoe;
+	public static Item sapphire_pickaxe;
+	public static Item sapphire_shovel;
+	public static Item sapphire_sword;
+	public static Item sapphire_dagger;
+	public static Item sapphire_hammer;
+	public static Item sapphire_katana;
+	public static Item sapphire_mace;
+	public static Item sapphire_rapier;
+	public static Item sapphire_scythe;
+	public static Item sapphire_two_sword;
+	//Kyber Crystal
+	public static Item kyber_blue;
+	public static Item kyber_green;
+	public static Item kyber_purple;
+	public static Item kyber_red;
+	//Crystallite
+	public static Item crystallite_ingot;
+	public static Item crystallite_rod;
+	//Items
+	public static Item broken_blue_rose_sword;
+	//Armor
+	public static Item emerald_helmet;
+	public static Item emerald_chestplate;
+	public static Item emerald_leggings;
+	public static Item emerald_boots;
+	public static Item ruby_helmet;
+	public static Item ruby_chestplate;
+	public static Item ruby_leggings;
+	public static Item ruby_boots;
+	public static Item sapphire_helmet;
+	public static Item sapphire_chestplate;
+	public static Item sapphire_leggings;
+	public static Item sapphire_boots;
+	public static Item steel_helmet;
+	public static Item steel_chestplate;
+	public static Item steel_leggings;
+	public static Item steel_boots;
+	//Axe
+	public static Item el_chopo;
+	public static Item elderly_axe;
+	public static Item nadr;
+	public static Item parashu;
+	public static Item training_axe;
+	//Bow
+	public static Item green_longbow;
+	public static Item ichaival;
+	public static Item larc_qul_ne_faut;
+	public static Item thunderstorm;
+	public static Item training_bow;
+	public static Item vampire_shot;
+	//Dagger
+	public static Item carnwennan;
+	public static Item clear_strike;
+	public static Item training_dagger;
+	public static Item giardino;
+	public static Item strike_of_god;
+	public static Item sword_breaker;
+	//Hammer
+	public static Item mjolnir;
+	public static Item rainbow_smasher;
+	public static Item training_hammer;
+	//Katana
+	public static Item ame_no_murakumo;
+	public static Item masamune;
+	public static Item training_katana;
+	public static Item usumidori;
+	//Mace
+	public static Item gridarvol;
+	public static Item training_mace;
+	//Sword
+	public static Item blood_rose_sword;
+	public static Item blue_long_sword;
+	public static Item blue_rose_sword;
+	public static Item brianator;
+	public static Item cactus_blade;
+	public static Item calibur;
+	public static Item conscience;
+	public static Item dark_repulser;
+	public static Item dark_rosario;
+	public static Item dark_shadow;
+	public static Item death_blade;
+	public static Item death_ice;
+	public static Item divination;
+	public static Item durandal;
+	public static Item elucidator;
+	public static Item emerald_easer;
+	public static Item ender_blade;
+	public static Item excalibur;
+	public static Item green_long_sword;
+	public static Item hauteclere;
+	public static Item hrunting;
+	public static Item joyeuse;
+	public static Item macuahuiti;
+	public static Item master_sword;
+	public static Item night_sky_sword;
+	public static Item orange_long_sword;
+	public static Item phantom_blade;
+	public static Item purple_long_sword;
+	public static Item rainbow_blade;
+	public static Item red_long_sword;
+	public static Item ruby_slicer;
+	public static Item sapphire_slicer;
+	public static Item sword_of_hogni;
+	public static Item training_onehanded;
+	public static Item vox_unitas;
+	public static Item weizen;
+	public static Item yellow_long_sword;
+	//Rapier
+	public static Item excalibru;
+	public static Item fire_stinger;
+	public static Item ray_of_grace;
+	public static Item rose_sword;
+	public static Item training_rapier;
+	public static Item water_stinger;
+	//Scythe
+	public static Item bikuta;
+	public static Item destroyer;
+	public static Item fate_bringer;
+	public static Item grim_scythe;
+	public static Item training_scythe;
+	//Spear
+	//Two Handed Sword
+	public static Item dargvandil;
+	public static Item dark_slicer;
+	public static Item fire_smasher;
+	public static Item monolith;
+	public static Item training_twohanded;
+	public static Item tsukiyomi;
+	//Blocks
+	public static Item crystallite_ore;
+	public static Item kyber_blue_ore;
+	public static Item kyber_green_ore;
+	public static Item kyber_purple_ore;
+	public static Item kyber_red_ore;
+	public static Item ruby_block;
+	public static Item ruby_ore;
+	public static Item sapphire_block;
+	public static Item sapphire_ore;
+}
