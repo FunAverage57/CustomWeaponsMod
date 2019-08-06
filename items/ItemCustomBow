@@ -1,0 +1,12 @@
+package funaverage57.customweapons.items;
+
+import net.minecraft.item.BowItem;
+
+public class ItemCustomBow extends BowItem{
+
+	public ItemCustomBow(int damage, Properties builder) {
+		super(builder);
+		builder.defaultMaxDamage(damage);
+	}
+
+}
