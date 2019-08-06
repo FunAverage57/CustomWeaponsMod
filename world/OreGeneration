@@ -1,0 +1,34 @@
+package funaverage57.customweapons.world;
+
+import funaverage57.customweapons.lists.BlockList;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.gen.GenerationStage.Decoration;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType;
+import net.minecraft.world.gen.placement.CountRangeConfig;
+import net.minecraft.world.gen.placement.Placement;
+import net.minecraftforge.registries.ForgeRegistries;
+
+public class OreGeneration {
+	public static void setupOreGeneration(){
+		Biome biome_crystallite_ore = Biomes.ICE_SPIKES;
+			CountRangeConfig crystallite_ore_placement = new CountRangeConfig(25, 20, 20, 40);
+			biome_crystallite_ore.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, BlockList.crystallite_ore.getDefaultState(), 3), Placement.COUNT_RANGE, crystallite_ore_placement));
+		for(Biome biome : ForgeRegistries.BIOMES){
+			CountRangeConfig kyber_blue_ore_placement = new CountRangeConfig(3, 20, 10, 30);
+			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, BlockList.kyber_blue_ore.getDefaultState(), 3), Placement.COUNT_RANGE, kyber_blue_ore_placement));
+			CountRangeConfig kyber_green_ore_placement = new CountRangeConfig(3, 20, 10, 30);
+			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, BlockList.kyber_green_ore.getDefaultState(), 3), Placement.COUNT_RANGE, kyber_green_ore_placement));
+			CountRangeConfig kyber_purple_ore_placement = new CountRangeConfig(3, 20, 10, 30);
+			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, BlockList.kyber_purple_ore.getDefaultState(), 3), Placement.COUNT_RANGE, kyber_purple_ore_placement));
+			CountRangeConfig kyber_red_ore_placement = new CountRangeConfig(3, 20, 10, 30);
+			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, BlockList.kyber_red_ore.getDefaultState(), 3), Placement.COUNT_RANGE, kyber_red_ore_placement));
+			CountRangeConfig ruby_ore_placement = new CountRangeConfig(5, 20, 20, 50);
+			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, BlockList.ruby_ore.getDefaultState(), 6), Placement.COUNT_RANGE, ruby_ore_placement));
+			CountRangeConfig sapphire_ore_placement = new CountRangeConfig(5, 20, 20, 50);
+			biome.addFeature(Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(FillerBlockType.NATURAL_STONE, BlockList.sapphire_ore.getDefaultState(), 6), Placement.COUNT_RANGE, sapphire_ore_placement));
+		}
+	}
+}
