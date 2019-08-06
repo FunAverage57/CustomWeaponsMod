@@ -1,0 +1,15 @@
+package funaverage57.customweapons.lists;
+
+import net.minecraft.block.Block;
+
+public class BlockList {
+	public static Block crystallite_ore;
+	public static Block kyber_blue_ore;
+	public static Block kyber_green_ore;
+	public static Block kyber_purple_ore;
+	public static Block kyber_red_ore;
+	public static Block ruby_block;
+	public static Block ruby_ore;
+	public static Block sapphire_block;
+	public static Block sapphire_ore;
+}
